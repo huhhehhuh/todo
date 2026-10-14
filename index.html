@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#2457eb"><meta name="description" content="적고, 하나씩 끝내는 나의 할 일 목록.">
-  <title>하나씩 · 할 일</title><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./icon-192.png"><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./style.css?v=3">
+  <title>하나씩 · 할 일</title><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./icon-192.png"><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./style.css?v=4">
 </head>
 <body>
   <main class="shell">
     <header class="topbar">
       <nav aria-label="할 일 보기">
-        <button class="nav-item active" data-filter="all">모든 할 일 <span id="count-all" class="count">0</span></button>
-        <button class="nav-item" data-filter="today">오늘 할 일 <span id="count-today" class="count">0</span></button>
+        <button class="nav-item active" data-view="all">모든 할 일 <span id="count-all" class="count">0</span></button>
+        <button class="nav-item" data-view="today">오늘 할 일 <span id="count-today" class="count">0</span></button>
+        <button class="nav-item" data-view="calendar">캘린더</button>
       </nav>
       <div class="utilities"><button id="backup-open" class="quiet" title="백업 · 불러오기">백업</button></div>
     </header>
-    <section class="list-section" aria-label="할 일 목록" tabindex="0"><div id="task-list"></div><div id="empty" class="empty">할 일 없음</div></section>
+    <section id="list-view" class="list-section" aria-label="할 일 목록" tabindex="0"><div id="task-list"></div><div id="empty" class="empty">할 일 없음</div></section>
+    <section id="calendar-view" class="calendar-section" aria-label="할 일 캘린더" hidden>
+      <div class="calendar-toolbar"><button id="previous-month" class="month-button" aria-label="지난달">‹</button><h1 id="month-label"></h1><button id="next-month" class="month-button" aria-label="다음달">›</button></div>
+      <div class="weekdays" aria-hidden="true"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+      <div id="calendar-grid" class="calendar-grid"></div>
+    </section>
     <form id="add-form" class="composer">
       <div class="input-line"><input id="task-title" maxlength="300" aria-label="새 할 일" placeholder="할 일 추가" required autocomplete="off"><button class="primary add-button" type="submit" aria-label="할 일 추가">+</button></div>
       <div class="composer-options"><label>마감 <input type="date" id="task-due" aria-label="새 할 일 마감일"></label><label>우선순위 <select id="task-priority" aria-label="새 할 일 우선순위"><option value="normal">보통</option><option value="high">높음</option><option value="low">낮음</option></select></label></div>
@@ -24,6 +30,6 @@
   <dialog id="backup-dialog"><div class="dialog-heading"><h2>목록 백업</h2><button class="icon-button close-dialog" aria-label="닫기">×</button></div><button id="export" class="primary wide">백업 파일 저장</button><label class="secondary wide import-label">백업 파일 불러오기<input type="file" id="import" accept=".json,application/json" hidden></label><p class="hint">불러온 항목은 현재 목록에 합쳐져요.</p></dialog>
 
   <div id="toast" role="status" aria-live="polite" hidden><span id="toast-message"></span><button id="undo" hidden>되돌리기</button></div>
-  <script src="./app.js?v=3" defer></script>
+  <script src="./app.js?v=4" defer></script>
 </body>
 </html>
